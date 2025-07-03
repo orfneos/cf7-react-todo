@@ -1,9 +1,12 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import type { TodoFormProps } from "../types";
 
-const TodoForm = ({dispatch}: TodoFormProps) => {
+const TodoForm = ({dispatch, inputRef}: TodoFormProps) => {
 
     const [text, setText] = useState("");
+
+    // const inputRef = useRef<HTMLInputElement>(null);
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setText(e.target.value);
     };
@@ -12,8 +15,12 @@ const TodoForm = ({dispatch}: TodoFormProps) => {
         if (text.trim() !== "") {
             dispatch({type:"ADD", payload: text});
             setText("");
+            inputRef.current?.focus();
             }
     };
+
+
+
 
     return(
         <>
@@ -22,6 +29,7 @@ const TodoForm = ({dispatch}: TodoFormProps) => {
                 onSubmit={handleSubmit}
             >
                 <input
+                    ref={inputRef}
                     type="text"
                        value={text}
                        onChange={handleChange}
