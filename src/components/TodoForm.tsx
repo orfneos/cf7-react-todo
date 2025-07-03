@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import type { TodoFormProps } from "../types";
 
 const TodoForm = ({dispatch, inputRef}: TodoFormProps) => {
